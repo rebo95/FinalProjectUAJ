@@ -38,6 +38,7 @@ public class Game : MonoBehaviour
     public int score = 0;
     public bool isGameOver = false;
 
+
     [SerializeField]
     private GameObject shipModel;
     [SerializeField]
@@ -53,23 +54,38 @@ public class Game : MonoBehaviour
 
     private static Game instance;
 
+    [SerializeField]
+    private Text lifesText;
+
+    public int MaxLifes { get; } = 3;
+    public int currentLifes = 3;
+
     private void Start()
     {
         instance = this;
         titleText.enabled = true;
         gameOverText.enabled = false;
         scoreText.enabled = false;
+
+        lifesText.enabled = false;
+
         startGameButton.SetActive(true);
+
+        currentLifes = MaxLifes;
     }
 
     public static void GameOver()
     {
         instance.titleText.enabled = true;
+        instance.gameOverText.enabled = true;
+
+        instance.lifesText.enabled = false;
+
         instance.startGameButton.SetActive(true);
         instance.isGameOver = true;
         instance.spawner.StopSpawning();
         instance.shipModel.GetComponent<Ship>().Explode();
-        instance.gameOverText.enabled = true;
+
     }
 
     public void NewGame()
@@ -80,18 +96,32 @@ public class Game : MonoBehaviour
         shipModel.transform.position = new Vector3(0, -3.22f, 0);
         shipModel.transform.eulerAngles = new Vector3(90, 180, 0);
         score = 0;
+
+        currentLifes = MaxLifes;
+
         scoreText.text = "Score: " + score;
         scoreText.enabled = true;
+
         spawner.BeginSpawning();
         shipModel.GetComponent<Ship>().RepairShip();
         spawner.ClearAsteroids();
         gameOverText.enabled = false;
+
+
+        lifesText.text = "Lifes: " + shipModel.GetComponent<Ship>().CurrentLifes;
+        lifesText.enabled = true;
     }
 
     public static void AsteroidDestroyed()
     {
         instance.score++;
         instance.scoreText.text = "Score: " + instance.score;
+    }
+
+    public static void ShipDamaged()
+    {
+        instance.currentLifes--;
+        instance.lifesText.text = "Lifes: " + instance.currentLifes; /*instance.shipModel.GetComponent<Ship>().CurrentLifes;*/
     }
 
     public Ship GetShip()

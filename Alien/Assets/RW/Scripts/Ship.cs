@@ -50,6 +50,13 @@ public class Ship : MonoBehaviour
     private float maxLeft = -8;
     private float maxRight = 8;
 
+    [SerializeField]
+    private int maxLifes = 3;
+
+    public int MaxLifes { get { return this.maxLifes;  } }
+    public int CurrentLifes { get; set; }
+
+
     private void Update()
     {
         if (isDead)
@@ -124,5 +131,20 @@ public class Ship : MonoBehaviour
         explosion.SetActive(false);
         mesh.enabled = true;
         isDead = false;
+
+
+        CurrentLifes = maxLifes;
+    }
+
+    public void GetDamage()
+    {
+        if (!isDead)
+        {
+            CurrentLifes--;
+            Game.ShipDamaged();
+
+            if (CurrentLifes <= 0)
+                Game.GameOver();
+        }
     }
 }

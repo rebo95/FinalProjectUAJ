@@ -7,20 +7,41 @@ public class TestSuite
 {
     private Game game;
 
-    // 1
-    [UnityTest]
-    public IEnumerator AsteroidsMoveDown()
+    [SetUp]
+    public void Setup()
     {
         GameObject gameGameObject =
             MonoBehaviour.Instantiate(Resources.Load<GameObject>("Prefabs/Game"));
         game = gameGameObject.GetComponent<Game>();
+    }
+
+    [TearDown]
+    public void Teardown()
+    {
+        Object.Destroy(game.gameObject);
+    }
+
+
+    [UnityTest]
+    public IEnumerator AsteroidsMoveDown()
+    {
         GameObject asteroid = game.GetSpawner().SpawnAsteroid();
         float initialYPos = asteroid.transform.position.y;
         
         yield return new WaitForSeconds(0.1f);
         Assert.Less(asteroid.transform.position.y, initialYPos);
-        Object.Destroy(game.gameObject);
     }
 
+
+    [UnityTest]
+    public IEnumerator CollisionsWithAsteroidReducesLifes()
+    {
+        GameObject asteroid = game.GetSpawner().SpawnAsteroid();
+        asteroid.transform.position = game.GetShip().transform.position;
+        
+        yield return new WaitForSeconds(0.1f);
+
+        Assert.AreEqual(game.MaxLifes - 1, game.currentLifes);
+    }
 }
 
