@@ -43,5 +43,45 @@ public class TestSuite
 
         Assert.AreEqual(game.MaxLifes - 1, game.currentLifes);
     }
+
+    [UnityTest]
+    public IEnumerator DestroyedAsteroidRaisesScore()
+    {
+        GameObject asteroid = game.GetSpawner().SpawnAsteroid();
+        GameObject laser = game.GetShip().SpawnLaser();
+
+        asteroid.transform.position = laser.transform.position = Vector3.zero;
+
+        yield return new WaitForSeconds(0.1f);
+
+        Assert.AreEqual(game.score, 1);
+    }
+
+    [UnityTest]
+    public IEnumerator DestroyingAsteroidsIncrementAsteroidsVel()
+    {
+        GameObject asteroid = game.GetSpawner().SpawnAsteroid();
+        float iniVel = asteroid.GetComponent<Asteroid>().speed;
+        GameObject laser = game.GetShip().SpawnLaser();
+        asteroid.transform.position = laser.transform.position = Vector3.zero;
+        yield return new WaitForSeconds(0.1f);
+
+
+        for(int i = 0; i < game.GetInstance().pointsToIncreaseDifficulty - 1; i++)
+        {
+            asteroid = game.GetSpawner().SpawnAsteroid();
+            laser = game.GetShip().SpawnLaser();
+            asteroid.transform.position = laser.transform.position = Vector3.zero;
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        asteroid = game.GetSpawner().SpawnAsteroid();
+        float finalVel = asteroid.GetComponent<Asteroid>().speed;
+        yield return new WaitForSeconds(0.1f);
+
+
+        Assert.Greater(finalVel, iniVel);
+
+    }
 }
 

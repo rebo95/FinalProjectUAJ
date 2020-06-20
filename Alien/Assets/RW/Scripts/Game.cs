@@ -60,17 +60,9 @@ public class Game : MonoBehaviour
     public int MaxLifes { get; } = 3;
     public int currentLifes = 3;
 
-    [SerializeField]
-    private int pointsToIncreaseDifficulty = 5;
+    public int pointsToIncreaseDifficulty = 5;
     private int difficultyFlag = 0;
 
-
-    [SerializeField]
-    private int gameInitialDifficulty_AsteroidVel = 1;
-
-    [SerializeField]
-    private static float asteroidDifficultyIncrement = 0.2f;
-    public static float Difficulty { get; set; }
 
     private void Start()
     {
@@ -85,10 +77,7 @@ public class Game : MonoBehaviour
 
         currentLifes = MaxLifes;
 
-
-        Difficulty = gameInitialDifficulty_AsteroidVel;
-
-        difficultyFlag = pointsToIncreaseDifficulty;
+        difficultyFlag = 0;
     }
 
     public static void GameOver()
@@ -127,23 +116,31 @@ public class Game : MonoBehaviour
 
         lifesText.text = "Lifes: " + shipModel.GetComponent<Ship>().CurrentLifes;
         lifesText.enabled = true;
+
+        difficultyFlag = 0;
     }
 
     public static void AsteroidDestroyed()
     {
         instance.score++;
+        instance.difficultyFlag++;
         instance.scoreText.text = "Score: " + instance.score;
 
-        if(instance.score >= instance.difficultyFlag)
+        if(instance.difficultyFlag >= instance.pointsToIncreaseDifficulty)
         {
             IncreaseDifficulty();
-            instance.difficultyFlag += instance.pointsToIncreaseDifficulty;
+            instance.difficultyFlag = 0;
         }
     }
 
     public static void ShipDamaged()
     {
         instance.currentLifes--;
+        if (instance.currentLifes <= 0)
+        {
+            instance.currentLifes = 0;
+            GameOver();
+        }
         instance.lifesText.text = "Lifes: " + instance.currentLifes; /*instance.shipModel.GetComponent<Ship>().CurrentLifes;*/
     }
 
@@ -157,9 +154,14 @@ public class Game : MonoBehaviour
         return spawner.GetComponent<Spawner>();
     }
 
+    public Game GetInstance()
+    {
+        return instance;
+    }
+
     private static void IncreaseDifficulty()
     {
-        Difficulty += asteroidDifficultyIncrement;
+        instance.spawner.IncreaseAsteroidsSpeed();
     }
 
 }

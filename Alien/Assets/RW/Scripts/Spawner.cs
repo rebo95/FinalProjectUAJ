@@ -46,25 +46,24 @@ public class Spawner : MonoBehaviour
     private GameObject asteroid4;
 
     [SerializeField]
-    private float initialAsteroidSpeed = 0.5f;
+    private float initialAsteroidSpeed = 1f;
 
     [SerializeField]
     private float currentAsteroidSpeed;
 
     [SerializeField]
-    private float asteroidVelIncrement = 0.2f;
+    private float asteroidVelIncrement = 0.5f;
 
     public void BeginSpawning()
     {
         currentAsteroidSpeed = initialAsteroidSpeed;
-
         Debug.Log("Beguin spawning");
         StartCoroutine("Spawn");
     }
 
     IEnumerator Spawn()
     {
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(1f);
 
         SpawnAsteroid();
         StartCoroutine("Spawn");
@@ -94,11 +93,10 @@ public class Spawner : MonoBehaviour
                 break;
         }
 
-        //asteroid.GetComponent<Asteroid>().SetSpeed(currentAsteroidSpeed);
+        asteroid.GetComponent<Asteroid>().SetSpeed(currentAsteroidSpeed);
 
         asteroid.SetActive(true);
         float xPos = Random.Range(-8.0f, 8.0f);
-        // Spawn asteroid just above top of screen at a random point along x-axis
         asteroid.transform.position = new Vector3(xPos, 7.35f, 0);
 
         asteroids.Add(asteroid);
@@ -122,7 +120,7 @@ public class Spawner : MonoBehaviour
         StopCoroutine("Spawn");
     }
 
-    public void IncreaseAsteroidSpeed()
+    public void IncreaseAsteroidsSpeed()
     {
         currentAsteroidSpeed += asteroidVelIncrement;
     }
