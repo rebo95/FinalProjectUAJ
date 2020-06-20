@@ -60,6 +60,18 @@ public class Game : MonoBehaviour
     public int MaxLifes { get; } = 3;
     public int currentLifes = 3;
 
+    [SerializeField]
+    private int pointsToIncreaseDifficulty = 5;
+    private int difficultyFlag = 0;
+
+
+    [SerializeField]
+    private int gameInitialDifficulty_AsteroidVel = 1;
+
+    [SerializeField]
+    private static float asteroidDifficultyIncrement = 0.2f;
+    public static float Difficulty { get; set; }
+
     private void Start()
     {
         instance = this;
@@ -72,6 +84,11 @@ public class Game : MonoBehaviour
         startGameButton.SetActive(true);
 
         currentLifes = MaxLifes;
+
+
+        Difficulty = gameInitialDifficulty_AsteroidVel;
+
+        difficultyFlag = pointsToIncreaseDifficulty;
     }
 
     public static void GameOver()
@@ -116,6 +133,12 @@ public class Game : MonoBehaviour
     {
         instance.score++;
         instance.scoreText.text = "Score: " + instance.score;
+
+        if(instance.score >= instance.difficultyFlag)
+        {
+            IncreaseDifficulty();
+            instance.difficultyFlag += instance.pointsToIncreaseDifficulty;
+        }
     }
 
     public static void ShipDamaged()
@@ -133,4 +156,10 @@ public class Game : MonoBehaviour
     {
         return spawner.GetComponent<Spawner>();
     }
+
+    private static void IncreaseDifficulty()
+    {
+        Difficulty += asteroidDifficultyIncrement;
+    }
+
 }
