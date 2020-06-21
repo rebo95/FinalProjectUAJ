@@ -8,6 +8,7 @@ public class Asteroid_Test_Suit
     private Game game;
 
 
+    //Comprueba si los asteroides se mueven en la dirección y sentido correctos
     [UnityTest]
     public IEnumerator AsteroidsMoveDown()
     {
@@ -19,6 +20,7 @@ public class Asteroid_Test_Suit
     }
 
 
+    //Comprueba si destruir los asteroides con las balas se incrementa la puntuación
     [UnityTest]
     public IEnumerator DestroyedAsteroidRaisesScore()
     {
@@ -32,6 +34,9 @@ public class Asteroid_Test_Suit
         Assert.AreEqual(game.score, 1);
     }
 
+
+    //Comprueba si al llegar al número de asteroides destruidos
+    //Se incrementa la velocidad de los mimsos.
     [UnityTest]
     public IEnumerator DestroyingAsteroidsIncrementAsteroidsVel()
     {
@@ -62,7 +67,7 @@ public class Asteroid_Test_Suit
 
 
 
-
+    //Incializador
     [SetUp]
     public void Setup()
     {
@@ -71,6 +76,7 @@ public class Asteroid_Test_Suit
         game = gameGameObject.GetComponent<Game>();
     }
 
+    //Destructor
     [TearDown]
     public void Teardown()
     {
