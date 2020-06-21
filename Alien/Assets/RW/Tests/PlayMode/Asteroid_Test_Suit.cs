@@ -3,23 +3,9 @@ using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
 
-public class TestSuite
+public class Asteroid_Test_Suit
 {
     private Game game;
-
-    [SetUp]
-    public void Setup()
-    {
-        GameObject gameGameObject =
-            MonoBehaviour.Instantiate(Resources.Load<GameObject>("Prefabs/Game"));
-        game = gameGameObject.GetComponent<Game>();
-    }
-
-    [TearDown]
-    public void Teardown()
-    {
-        Object.Destroy(game.gameObject);
-    }
 
 
     [UnityTest]
@@ -27,22 +13,11 @@ public class TestSuite
     {
         GameObject asteroid = game.GetSpawner().SpawnAsteroid();
         float initialYPos = asteroid.transform.position.y;
-        
+
         yield return new WaitForSeconds(0.1f);
         Assert.Less(asteroid.transform.position.y, initialYPos);
     }
 
-
-    [UnityTest]
-    public IEnumerator CollisionsWithAsteroidReducesLifes()
-    {
-        GameObject asteroid = game.GetSpawner().SpawnAsteroid();
-        asteroid.transform.position = game.GetShip().transform.position;
-        
-        yield return new WaitForSeconds(0.1f);
-
-        Assert.AreEqual(game.MaxLifes - 1, game.currentLifes);
-    }
 
     [UnityTest]
     public IEnumerator DestroyedAsteroidRaisesScore()
@@ -67,7 +42,7 @@ public class TestSuite
         yield return new WaitForSeconds(0.1f);
 
 
-        for(int i = 0; i < game.GetInstance().pointsToIncreaseDifficulty - 1; i++)
+        for (int i = 0; i < game.GetInstance().pointsToIncreaseDifficulty - 1; i++)
         {
             asteroid = game.GetSpawner().SpawnAsteroid();
             laser = game.GetShip().SpawnLaser();
@@ -83,5 +58,22 @@ public class TestSuite
         Assert.Greater(finalVel, iniVel);
 
     }
-}
 
+
+
+
+
+    [SetUp]
+    public void Setup()
+    {
+        GameObject gameGameObject =
+            MonoBehaviour.Instantiate(Resources.Load<GameObject>("Prefabs/Game"));
+        game = gameGameObject.GetComponent<Game>();
+    }
+
+    [TearDown]
+    public void Teardown()
+    {
+        Object.Destroy(game.gameObject);
+    }
+}

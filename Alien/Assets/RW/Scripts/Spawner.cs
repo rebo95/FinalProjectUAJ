@@ -54,9 +54,14 @@ public class Spawner : MonoBehaviour
     [SerializeField]
     private float asteroidVelIncrement = 0.5f;
 
-    public void BeginSpawning()
+
+    public void Start()
     {
         currentAsteroidSpeed = initialAsteroidSpeed;
+    }
+
+    public void BeginSpawning()
+    {
         Debug.Log("Beguin spawning");
         StartCoroutine("Spawn");
     }
