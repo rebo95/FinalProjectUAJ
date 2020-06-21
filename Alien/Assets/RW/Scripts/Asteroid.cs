@@ -55,13 +55,13 @@ public class Asteroid : MonoBehaviour
     {
         if (collision.gameObject.name == "ShipModel")
         {
-            //Game.GameOver();
             Destroy(gameObject);
             Game.ShipDamaged();
-            //collision.gameObject.GetComponent<Ship>().GetDamage();
         }
     }
 
+    //Método que nos permite fijar la velocidad del asteroide que se estará
+    //Spawneando
     public void SetSpeed(float s)
     {
         speed = s;

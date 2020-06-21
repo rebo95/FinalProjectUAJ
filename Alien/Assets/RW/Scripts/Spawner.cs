@@ -32,6 +32,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//AÑADIDO:
+//Esta clase lleva ahora la información relativa a la velocidad a la
+//que deberán moverse los asteroides espawneados
 public class Spawner : MonoBehaviour
 {
     public List<GameObject> asteroids = new List<GameObject>();
@@ -125,6 +129,8 @@ public class Spawner : MonoBehaviour
         StopCoroutine("Spawn");
     }
 
+    //Incrementa la velocidad que se le asignará a los asteroides cuando sean
+    //spawneados.
     public void IncreaseAsteroidsSpeed()
     {
         currentAsteroidSpeed += asteroidVelIncrement;

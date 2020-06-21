@@ -33,6 +33,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Añadido
+//Ahora la clase posee la información relativa al número de 
+//vidas del jugador, que tendrá varias oportunidades de colisión
+//con asteroides antes de perder la partida.
 public class Game : MonoBehaviour
 {
     public int score = 0;
@@ -126,6 +130,9 @@ public class Game : MonoBehaviour
         instance.difficultyFlag++;
         instance.scoreText.text = "Score: " + instance.score;
 
+        //Cuando destruimos tantos asteroides como queremos para aumentar la
+        //velocidad, llamamos al Spawner para que modifique la variable de
+        //velodidad con la que spawneará los asteroides.
         if(instance.difficultyFlag >= instance.pointsToIncreaseDifficulty)
         {
             IncreaseDifficulty();
@@ -133,6 +140,9 @@ public class Game : MonoBehaviour
         }
     }
 
+    //Método para la gestión del sistema de vidas, cada vez que colisione un
+    //asteroide se llamará desde la clase Asteroid a este método.
+    //Una vez lleguen las vidas a 0, se termina la partida.
     public static void ShipDamaged()
     {
         instance.currentLifes--;
@@ -159,6 +169,9 @@ public class Game : MonoBehaviour
         return instance;
     }
 
+
+    //Método auxiliar de enlace que llama al incremento de velocidad
+    //de la calse Spawner
     private static void IncreaseDifficulty()
     {
         instance.spawner.IncreaseAsteroidsSpeed();
