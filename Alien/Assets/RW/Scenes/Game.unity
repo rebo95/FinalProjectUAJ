@@ -132,6 +132,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game
       objectReference: {fileID: 0}
+    - target: {fileID: 1845083579151638, guid: 3befbaa1b3b83f243a244d723a27c16e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4055792686439916, guid: 3befbaa1b3b83f243a244d723a27c16e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.49092
@@ -180,6 +184,21 @@ PrefabInstance:
         type: 3}
       propertyPath: maxLifes
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114885424819564724, guid: 3befbaa1b3b83f243a244d723a27c16e,
+        type: 3}
+      propertyPath: canShoot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114885424819564724, guid: 3befbaa1b3b83f243a244d723a27c16e,
+        type: 3}
+      propertyPath: isDead
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114967116146624472, guid: 3befbaa1b3b83f243a244d723a27c16e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224299825354672640, guid: 3befbaa1b3b83f243a244d723a27c16e,
         type: 3}
