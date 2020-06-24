@@ -51,6 +51,18 @@ public class Ship_Test_Suit
         yield return null;
     }
 
+    //Comprueba que los láser avanzan correctamente hacia arriba
+    [UnityTest]
+    public IEnumerator LaserMovesUp()
+    {
+        GameObject laser = game.GetShip().SpawnLaser();
+        float initialPosY = laser.transform.position.y;
+
+        yield return new WaitForSeconds(0.1f);
+
+        Assert.Greater(laser.transform.position.y, initialPosY);
+    }
+
     //Inicializador
     [SetUp]
     public void Setup()
