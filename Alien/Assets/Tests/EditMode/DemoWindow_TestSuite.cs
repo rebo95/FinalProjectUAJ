@@ -6,7 +6,7 @@ using UnityEditor;
 
 
 //Suite de tests para el Editor
-public class Editor_Test_Suite 
+public class DemoWindow_TestSuite 
 {
     private DemoWindow window;
 
@@ -21,14 +21,14 @@ public class Editor_Test_Suite
     [TearDown]
     public void Teardown()
     {
-
+        window.Close();
     }
 
     //Test nº1
     [UnityTest]
     public IEnumerator WindowCreated()
     {
-        yield return new WaitForSeconds(0.1f);
-        Assert.True(window == null);
+        yield return null;
+        Assert.True(window != null);
     }
 }
