@@ -38,27 +38,20 @@ public class Asteroid_Test_Suit
     //Comprueba si al llegar al número de asteroides destruidos
     //Se incrementa la velocidad de los mimsos.
     [UnityTest]
-    public IEnumerator DestroyingAsteroidsIncrementAsteroidsVel()
+    public IEnumerator ReachingAScoreDestroyingAsteroidsIncrementAsteroidsVel()
     {
         GameObject asteroid = game.GetSpawner().SpawnAsteroid();
         float iniVel = asteroid.GetComponent<Asteroid>().speed;
-        GameObject laser = game.GetShip().SpawnLaser();
-        asteroid.transform.position = laser.transform.position = Vector3.zero;
-        yield return new WaitForSeconds(0.1f);
-
+        Game.AsteroidDestroyed();
 
         for (int i = 0; i < game.GetInstance().pointsToIncreaseDifficulty - 1; i++)
         {
-            asteroid = game.GetSpawner().SpawnAsteroid();
-            laser = game.GetShip().SpawnLaser();
-            asteroid.transform.position = laser.transform.position = Vector3.zero;
-            yield return new WaitForSeconds(0.1f);
+            Game.AsteroidDestroyed();
         }
 
         asteroid = game.GetSpawner().SpawnAsteroid();
         float finalVel = asteroid.GetComponent<Asteroid>().speed;
         yield return new WaitForSeconds(0.1f);
-
 
         Assert.Greater(finalVel, iniVel);
 
