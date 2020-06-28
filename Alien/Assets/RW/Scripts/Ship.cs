@@ -58,6 +58,9 @@ public class Ship : MonoBehaviour
 
     private bool shield = false;
 
+    [SerializeField]
+    private GameObject shield_Prefab;
+
 
     private void Update()
     {
@@ -167,5 +170,11 @@ public class Ship : MonoBehaviour
     public void setShield(bool b)
     {
         shield = b;
+
+        if (b == true)
+            transform.GetChild(2).gameObject.SetActive(true);
+        else
+            transform.GetChild(2).gameObject.SetActive(false);
     }
+
 }
