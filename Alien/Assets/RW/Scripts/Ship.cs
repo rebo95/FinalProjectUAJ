@@ -56,6 +56,8 @@ public class Ship : MonoBehaviour
     public int MaxLifes { get { return this.maxLifes;  } }
     public int CurrentLifes { get; set; }
 
+    private bool shield = false;
+
 
     private void Update()
     {
@@ -146,5 +148,24 @@ public class Ship : MonoBehaviour
             if (CurrentLifes <= 0)
                 Game.GameOver();
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.GetComponent<PowerUp>() != null)
+        {
+            setShield(true);
+            Destroy(collision.gameObject);
+        }
+    }
+
+    public bool HasShield()
+    {
+        return shield;
+    }
+
+    public void setShield(bool b)
+    {
+        shield = b;
     }
 }

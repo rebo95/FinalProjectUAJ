@@ -21,14 +21,6 @@ public class PowerUp : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.name == "ShipModel")
-        {
-            Destroy(gameObject);
-        }
-    }
-
     //Método que nos permite fijar la velocidad del powerUp que se estará
     //Spawneando
     public void SetSpeed(float s)

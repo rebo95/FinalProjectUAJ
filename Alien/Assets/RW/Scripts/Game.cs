@@ -147,13 +147,20 @@ public class Game : MonoBehaviour
     //Una vez lleguen las vidas a 0, se termina la partida.
     public static void ShipDamaged()
     {
-        instance.currentLifes--;
-        if (instance.currentLifes <= 0)
+        if (!instance.GetShip().HasShield())
         {
-            instance.currentLifes = 0;
-            GameOver();
+            instance.currentLifes--;
+            if (instance.currentLifes <= 0)
+            {
+                instance.currentLifes = 0;
+                GameOver();
+            }
+            instance.lifesText.text = "Lifes: " + instance.currentLifes; /*instance.shipModel.GetComponent<Ship>().CurrentLifes;*/
         }
-        instance.lifesText.text = "Lifes: " + instance.currentLifes; /*instance.shipModel.GetComponent<Ship>().CurrentLifes;*/
+        else
+        {
+            instance.GetShip().setShield(false);
+        }
     }
 
     public Ship GetShip()
