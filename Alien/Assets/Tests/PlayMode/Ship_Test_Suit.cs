@@ -63,6 +63,20 @@ public class Ship_Test_Suit
         Assert.Greater(laser.transform.position.y, initialPosY);
     }
 
+    //Comprueba que los lasers destruyen los asteroides al colisionar con ellos
+    [UnityTest]
+    public IEnumerator LaserDestroysAsteroid()
+    {
+        GameObject asteroid = game.GetSpawner().SpawnAsteroid();
+        asteroid.transform.position = Vector3.zero;
+        GameObject laser = game.GetShip().SpawnLaser();
+        laser.transform.position = Vector3.zero;
+        yield return new WaitForSeconds(0.1f);
+        UnityEngine.Assertions.Assert.IsNull(asteroid);
+    }
+
+
+
     //Inicializador
     [SetUp]
     public void Setup()
