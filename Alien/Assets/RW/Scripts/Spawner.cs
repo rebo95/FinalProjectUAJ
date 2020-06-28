@@ -80,7 +80,7 @@ public class Spawner : MonoBehaviour
 
     public GameObject SpawnAsteroid()
     {
-        Debug.Log("Espawnea asteroide");
+        //Debug.Log("Espawnea asteroide");
         int random = Random.Range(1, 5);
         GameObject asteroid;
         switch (random)

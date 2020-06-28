@@ -36,8 +36,10 @@ public class Laser : MonoBehaviour
 {
     [SerializeField]
     private Spawner spawner;
+    [SerializeField]
+    private GameObject powerUp;
 
-	void Update ()
+    void Update ()
     {
         transform.Translate(Vector3.back * Time.deltaTime * 5);
         if (transform.position.y > 10)
@@ -51,6 +53,10 @@ public class Laser : MonoBehaviour
         if (collision.gameObject.GetComponent<Asteroid>() != null)
         {
             Game.AsteroidDestroyed();
+            
+            if(Game.IsPowerUpPoint())
+                Instantiate(powerUp, collision.gameObject.transform.position, collision.gameObject.transform.rotation);
+            
             Destroy(gameObject);
             spawner.asteroids.Remove(collision.gameObject);
             Destroy(collision.gameObject);

@@ -67,6 +67,8 @@ public class Game : MonoBehaviour
     public int pointsToIncreaseDifficulty = 5;
     private int difficultyFlag = 0;
 
+    public int pointsForPowerUp = 5;
+
 
     private void Start()
     {
@@ -175,6 +177,14 @@ public class Game : MonoBehaviour
     private static void IncreaseDifficulty()
     {
         instance.spawner.IncreaseAsteroidsSpeed();
+    }
+
+    public static bool IsPowerUpPoint()
+    {
+        if (instance.score % instance.pointsForPowerUp == 0)
+            return true;
+        else
+            return false;
     }
 
 }
