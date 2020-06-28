@@ -184,7 +184,7 @@ PrefabInstance:
         type: 3}
       propertyPath: powerUp
       value: 
-      objectReference: {fileID: 1502634647259328661, guid: 654f7a4e05662e144b3614385a5fd727,
+      objectReference: {fileID: 1798400971816571252, guid: 8d389e7bac3ee2f408f07f001a423010,
         type: 3}
     - target: {fileID: 114885424819564724, guid: 3befbaa1b3b83f243a244d723a27c16e,
         type: 3}
