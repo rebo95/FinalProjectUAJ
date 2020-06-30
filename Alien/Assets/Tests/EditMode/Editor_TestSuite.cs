@@ -3,6 +3,7 @@ using NUnit.Framework;
 using System.Collections;
 using UnityEngine;
 using UnityEditor;
+using System.Collections.Generic;
 
 
 //Suite de tests para el Editor
@@ -10,14 +11,21 @@ public class Editor_TestSuite
 {
     //Script y ventana de prueba
     private TracerWindow window;
-    private Tracer script;
+    private Tracer tracer;
 
     //Incializador
     [SetUp]
     public void Setup()
     {
         window = (TracerWindow)EditorWindow.GetWindow(typeof(TracerWindow));
-        script = GameObject.Find("Tracer").GetComponent<Tracer>();
+        tracer = GameObject.Find("Tracer").GetComponent<Tracer>();
+
+        //Añadimos 4 variables:
+        tracer.vars = new List<TracedVar>();
+        tracer.vars.Add(new TracedVar(GameObject.Find("Game").GetComponent<Game>(), "currentLifes")); //Correcta
+        tracer.vars.Add(new TracedVar(GameObject.Find("Game").GetComponent<Game>(), "currentLifes")); //Correcta pero igual que la 1ª
+        tracer.vars.Add(new TracedVar(GameObject.Find("ShipModel").GetComponent<Ship>(), "position")); //Correcta 
+        tracer.vars.Add(new TracedVar(GameObject.Find("ShipModel").GetComponent<Ship>(), "isKinematic")); //Incorrecta
     }
 
     //Destructor
@@ -35,15 +43,29 @@ public class Editor_TestSuite
         Assert.True(window != null);
     }
 
-    //Test nº2 - Comprueba que no hay variables repetidas en la lista de trackeo
+    //Test nº2 - Comprueba que la ventana ha cogido el tracer correctamente
     [UnityTest]
-    public IEnumerator NotRepeatingVariables()
+    public IEnumerator CorrectTracer()
     {
         yield return null;
-        Debug.Log(script.vars.Count);
-        for (int i = 0; i < script.vars.Count; i++)
-            for (int j = 0; j < script.vars.Count; j++)
-                if (i != j)
-                    Assert.False(script.vars[i].Equals(script.vars[j]));
+        Assert.True(window.tracer == tracer);
+    }
+
+    //Test nº3 - Comprueba que funciona el método Equals() de TracedVar
+    [UnityTest]
+    public IEnumerator TracedVarEquals()
+    {
+        yield return null;
+        Assert.True(tracer.vars[0].Equals(tracer.vars[1]));
+        Assert.False(tracer.vars[0].Equals(tracer.vars[2]));
+    }
+
+    //Test nº4 - Comprueba que funciona el método IsCorrect() de TracedVar
+    [UnityTest]
+    public IEnumerator TracedVarIsCorrect()
+    {
+        yield return null;
+        Assert.True(tracer.vars[0].IsCorrect());
+        Assert.False(tracer.vars[3].IsCorrect());
     }
 }

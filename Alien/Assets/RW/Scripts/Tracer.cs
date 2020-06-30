@@ -19,7 +19,7 @@ public class TracedVar
 {
     public Object objeto;
     public Component componente;
-    public string variable;
+    public string nombre;
 
 
     #region Constructoras
@@ -27,14 +27,14 @@ public class TracedVar
     {
         this.objeto = null;
         this.componente = null;
-        this.variable = "";
+        this.nombre = "";
     }
 
     public TracedVar(Component component, string value)
     {
         this.objeto = component.gameObject;
         this.componente = component;
-        this.variable = value;
+        this.nombre = value;
     }
 
 
@@ -42,7 +42,7 @@ public class TracedVar
     {
         this.objeto = objeto;
         this.componente = component;
-        this.variable = value;
+        this.nombre = value;
     }
     #endregion
 
@@ -51,7 +51,7 @@ public class TracedVar
     {
         var demo = obj as TracedVar;
         return demo != null &&
-               variable == demo.variable &&
+               nombre == demo.nombre &&
                EqualityComparer<object>.Default.Equals(componente, demo.componente) &&
                EqualityComparer<Object>.Default.Equals(objeto, demo.objeto);
     }
@@ -59,7 +59,7 @@ public class TracedVar
     public override int GetHashCode()
     {
         var hashCode = -1495079906;
-        hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(variable);
+        hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(nombre);
         hashCode = hashCode * -1521134295 + EqualityComparer<object>.Default.GetHashCode(componente);
         hashCode = hashCode * -1521134295 + EqualityComparer<Object>.Default.GetHashCode(objeto);
         return hashCode;
@@ -73,7 +73,7 @@ public class TracedVar
     {
         //Obtenemos la propiedad del componente
         System.Type t = componente.GetType();
-        PropertyInfo prop = t.GetProperty(variable);
+        PropertyInfo prop = t.GetProperty(nombre);
         if (prop == null)
             return null;
 
@@ -87,7 +87,7 @@ public class TracedVar
         //Obtenemos la propiedad del componente
         object obj = componente; //casting necesario
         System.Type type = obj.GetType();
-        PropertyInfo prop = type.GetProperty(variable);
+        PropertyInfo prop = type.GetProperty(nombre);
 
         //Si no existe, nada
         if (prop == null)
@@ -98,15 +98,7 @@ public class TracedVar
     }
 
 
-    //Dice si la variable es un array
-    public bool IsAnArray()
-    {
-        System.Type type = this.GetType();
-        return (type.IsArray);
-    }
-
-
-    //TODO:moverlo a test
+    //Es correcta
     public bool IsCorrect()
     {
         //1. Comprobamos que hay un gameobject y objeto seleccionados
@@ -117,7 +109,7 @@ public class TracedVar
         //2. Comprobamos que el componente tiene esa propiedad
         System.Type t = obj.GetType(); //Tipo
         List<PropertyInfo> props = t.GetProperties().ToList();
-        PropertyInfo p = props.Find((x) => x.Name == variable);
+        PropertyInfo p = props.Find((x) => x.Name == nombre);
         if (p == null)
             return false;
 

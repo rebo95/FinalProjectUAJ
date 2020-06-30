@@ -11,11 +11,11 @@ using System.Reflection;
 #region Parte de la ventana
 public class TracerWindow : EditorWindow
 {
-    private Tracer demoScript;
+    public Tracer tracer;
     /*
      * Inicializa la ventana y crea una entrada en el menú
      */
-    [MenuItem("Window/Demo Window")]
+    [MenuItem("Window/Tracer Window")]
     static void Init()
     {
         TracerWindow window = (TracerWindow)EditorWindow.GetWindow(typeof(TracerWindow));
@@ -27,7 +27,7 @@ public class TracerWindow : EditorWindow
      */
     private void Awake()
     {
-        demoScript = GameObject.Find("Tracer").GetComponent<Tracer>();
+        tracer = GameObject.Find("Tracer").GetComponent<Tracer>();
     }
 
     /*
@@ -36,10 +36,10 @@ public class TracerWindow : EditorWindow
     void OnGUI()
     {
         GUILayout.Label("Variables rastreadas:", EditorStyles.boldLabel);
-        for(int i = 0; i<demoScript.vars.Count; i++)
+        for(int i = 0; i<tracer.vars.Count; i++)
         {
-            GUILayout.Label(demoScript.vars[i].variable + "(" + demoScript.vars[i].objeto.name + "'s " +
-                demoScript.vars[i].componente.GetType().Name.ToLower() + ")     " + demoScript.vars[i].GetValue());
+            GUILayout.Label(tracer.vars[i].nombre + "(" + tracer.vars[i].objeto.name + "'s " +
+                tracer.vars[i].componente.GetType().Name.ToLower() + ")     " + tracer.vars[i].GetValue());
         }
     }
 
@@ -100,7 +100,7 @@ public class DemoInspector : PropertyDrawer
         // Propiedades 
         SerializedProperty objProp = property.FindPropertyRelative("objeto");
         SerializedProperty compProp = property.FindPropertyRelative("componente");
-        SerializedProperty varProp = property.FindPropertyRelative("variable");
+        SerializedProperty varProp = property.FindPropertyRelative("nombre");
 
         // Rectángulos donde se pintan
         var objRect = new Rect(position.x, position.y, 100, 16);
@@ -160,7 +160,7 @@ public class DemoInspector : PropertyDrawer
     {
         //Cogemos las propiedades
         SerializedProperty compProp = property.FindPropertyRelative("componente");
-        SerializedProperty varProp = property.FindPropertyRelative("variable");
+        SerializedProperty varProp = property.FindPropertyRelative("nombre");
 
         //Componente escogido
         object comp = compProp.objectReferenceValue;

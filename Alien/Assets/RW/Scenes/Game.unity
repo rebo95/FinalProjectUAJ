@@ -182,14 +182,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vars:
   - objeto: {fileID: 1784765012}
-    componente: {fileID: 1784765018}
-    variable: position
+    componente: {fileID: 1791806028}
+    nombre: position
   - objeto: {fileID: 1011780914}
     componente: {fileID: 1011780916}
-    variable: currentLifes
+    nombre: MaxLifes
   - objeto: {fileID: 847170715}
     componente: {fileID: 847170718}
-    variable: orthographic
+    nombre: nearClipPlane
 --- !u!4 &1444312564
 Transform:
   m_ObjectHideFlags: 0
@@ -207,12 +207,6 @@ Transform:
 --- !u!1 &1784765012 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1724638828557662, guid: 3befbaa1b3b83f243a244d723a27c16e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1791806027}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1784765018 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4988546219445628, guid: 3befbaa1b3b83f243a244d723a27c16e,
     type: 3}
   m_PrefabInstance: {fileID: 1791806027}
   m_PrefabAsset: {fileID: 0}
@@ -317,3 +311,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3befbaa1b3b83f243a244d723a27c16e, type: 3}
+--- !u!54 &1791806028 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 54075660058347392, guid: 3befbaa1b3b83f243a244d723a27c16e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1791806027}
+  m_PrefabAsset: {fileID: 0}
