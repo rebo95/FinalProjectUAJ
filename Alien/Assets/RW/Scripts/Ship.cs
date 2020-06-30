@@ -146,10 +146,10 @@ public class Ship : MonoBehaviour
         if (!isDead)
         {
             CurrentLifes--;
-            Game.ShipDamaged();
+            Game.Instance.ShipDamaged();
 
             if (CurrentLifes <= 0)
-                Game.GameOver();
+                Game.Instance.GameOver();
         }
     }
 
@@ -172,9 +172,9 @@ public class Ship : MonoBehaviour
         shield = b;
 
         if (b == true)
-            transform.GetChild(2).gameObject.SetActive(true);
+            transform.GetChild(1).gameObject.SetActive(true);
         else
-            transform.GetChild(2).gameObject.SetActive(false);
+            transform.GetChild(1).gameObject.SetActive(false);
     }
 
 }

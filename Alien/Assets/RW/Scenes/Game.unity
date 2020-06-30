@@ -121,6 +121,101 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &847170715 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1007407328549284, guid: 3befbaa1b3b83f243a244d723a27c16e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1791806027}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &847170718 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 20448999535679014, guid: 3befbaa1b3b83f243a244d723a27c16e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1791806027}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1011780914 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1014613554579478, guid: 3befbaa1b3b83f243a244d723a27c16e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1791806027}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1011780916 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114338881368631318, guid: 3befbaa1b3b83f243a244d723a27c16e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1791806027}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011780914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8e2d61045e8d324e9bee2512c8252b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1444312561
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1444312564}
+  - component: {fileID: 1444312562}
+  m_Layer: 0
+  m_Name: Tracer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1444312562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444312561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc3ddda46817f82479833b7a281556c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vars:
+  - objeto: {fileID: 1784765012}
+    componente: {fileID: 1784765018}
+    variable: position
+  - objeto: {fileID: 1011780914}
+    componente: {fileID: 1011780916}
+    variable: currentLifes
+  - objeto: {fileID: 847170715}
+    componente: {fileID: 847170718}
+    variable: orthographic
+--- !u!4 &1444312564
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444312561}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1784765012 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1724638828557662, guid: 3befbaa1b3b83f243a244d723a27c16e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1791806027}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1784765018 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4988546219445628, guid: 3befbaa1b3b83f243a244d723a27c16e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1791806027}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1791806027
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -131,6 +226,10 @@ PrefabInstance:
     - target: {fileID: 1014613554579478, guid: 3befbaa1b3b83f243a244d723a27c16e, type: 3}
       propertyPath: m_Name
       value: Game
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729882074787140, guid: 3befbaa1b3b83f243a244d723a27c16e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1845083579151638, guid: 3befbaa1b3b83f243a244d723a27c16e, type: 3}
       propertyPath: m_IsActive
@@ -180,6 +279,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114762169254249198, guid: 3befbaa1b3b83f243a244d723a27c16e,
+        type: 3}
+      propertyPath: powerUp
+      value: 
+      objectReference: {fileID: 1798400971816571252, guid: 8d389e7bac3ee2f408f07f001a423010,
+        type: 3}
     - target: {fileID: 114885424819564724, guid: 3befbaa1b3b83f243a244d723a27c16e,
         type: 3}
       propertyPath: maxLifes

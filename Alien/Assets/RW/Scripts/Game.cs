@@ -62,13 +62,26 @@ public class Game : MonoBehaviour
     private Text lifesText;
 
     public int MaxLifes { get; } = 3;
-    public int currentLifes = 3;
+    public int currentLifes { get; set; }
 
     public int pointsToIncreaseDifficulty = 5;
     private int difficultyFlag = 0;
 
     public int pointsForPowerUp = 5;
 
+
+    public static Game Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                Debug.Log("Game sin inicializar");
+            }
+
+            return instance;
+        }
+    }
 
     private void Start()
     {
@@ -86,7 +99,7 @@ public class Game : MonoBehaviour
         difficultyFlag = 0;
     }
 
-    public static void GameOver()
+    public void GameOver()
     {
         instance.titleText.enabled = true;
         instance.gameOverText.enabled = true;
@@ -120,13 +133,13 @@ public class Game : MonoBehaviour
         gameOverText.enabled = false;
 
 
-        lifesText.text = "Lifes: " + shipModel.GetComponent<Ship>().CurrentLifes;
+        lifesText.text = "Lifes: " + instance.currentLifes;
         lifesText.enabled = true;
 
         difficultyFlag = 0;
     }
 
-    public static void AsteroidDestroyed()
+    public void AsteroidDestroyed()
     {
         instance.score++;
         instance.difficultyFlag++;
@@ -145,21 +158,21 @@ public class Game : MonoBehaviour
     //Método para la gestión del sistema de vidas, cada vez que colisione un
     //asteroide se llamará desde la clase Asteroid a este método.
     //Una vez lleguen las vidas a 0, se termina la partida.
-    public static void ShipDamaged()
+    public void ShipDamaged()
     {
-        if (!instance.GetShip().HasShield())
+        if (!GetShip().HasShield())
         {
             instance.currentLifes--;
-            if (instance.currentLifes <= 0)
+            if (currentLifes <= 0)
             {
-                instance.currentLifes = 0;
+                currentLifes = 0;
                 GameOver();
             }
-            instance.lifesText.text = "Lifes: " + instance.currentLifes; /*instance.shipModel.GetComponent<Ship>().CurrentLifes;*/
+            lifesText.text = "Lifes: " + currentLifes; /*instance.shipModel.GetComponent<Ship>().CurrentLifes;*/
         }
         else
         {
-            instance.GetShip().setShield(false);
+            GetShip().setShield(false);
         }
     }
 
@@ -181,12 +194,12 @@ public class Game : MonoBehaviour
 
     //Método auxiliar de enlace que llama al incremento de velocidad
     //de la calse Spawner
-    private static void IncreaseDifficulty()
+    private void IncreaseDifficulty()
     {
         instance.spawner.IncreaseAsteroidsSpeed();
     }
 
-    public static bool IsPowerUpPoint()
+    public bool IsPowerUpPoint()
     {
         if (instance.score % instance.pointsForPowerUp == 0)
             return true;

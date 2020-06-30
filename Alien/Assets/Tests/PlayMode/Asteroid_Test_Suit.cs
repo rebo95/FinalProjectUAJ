@@ -42,11 +42,11 @@ public class Asteroid_Test_Suit
     {
         GameObject asteroid = game.GetSpawner().SpawnAsteroid();
         float iniVel = asteroid.GetComponent<Asteroid>().speed;
-        Game.AsteroidDestroyed();
+        Game.Instance.AsteroidDestroyed();
 
         for (int i = 0; i < game.GetInstance().pointsToIncreaseDifficulty - 1; i++)
         {
-            Game.AsteroidDestroyed();
+            Game.Instance.AsteroidDestroyed();
         }
 
         asteroid = game.GetSpawner().SpawnAsteroid();
