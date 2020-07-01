@@ -142,7 +142,11 @@ MonoBehaviour:
   scoreText: {fileID: 114956359438189166}
   titleText: {fileID: 114481296861522746}
   spawner: {fileID: 114967116146624472}
+  _powerUp: {fileID: 1798400971816571252, guid: 8d389e7bac3ee2f408f07f001a423010,
+    type: 3}
   lifesText: {fileID: 8780876314077026845}
+  pointsToIncreaseDifficulty: 5
+  pointsForPowerUp: 5
 --- !u!1 &1115173646116342
 GameObject:
   m_ObjectHideFlags: 0
@@ -5856,6 +5860,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawner: {fileID: 114967116146624472}
+  powerUp: {fileID: 0}
 --- !u!54 &54607553103520588
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5986,6 +5991,9 @@ MonoBehaviour:
   asteroid2: {fileID: 1927950529812976, guid: 6ed3af977d730f14191f1c897d7cf80a, type: 3}
   asteroid3: {fileID: 1918484266454062, guid: 0967477038b42074b89d5a5e0332c0b8, type: 3}
   asteroid4: {fileID: 1250866368372588, guid: e2c9968c0cd782443b03d26a6ccf9664, type: 3}
+  initialAsteroidSpeed: 1
+  currentAsteroidSpeed: 0
+  asteroidVelIncrement: 0.5
 --- !u!1 &1845083579151638
 GameObject:
   m_ObjectHideFlags: 0
