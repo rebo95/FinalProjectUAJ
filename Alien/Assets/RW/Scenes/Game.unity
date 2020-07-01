@@ -316,13 +316,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game
       objectReference: {fileID: 0}
+    - target: {fileID: 1185553351460270, guid: 3befbaa1b3b83f243a244d723a27c16e, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1729882074787140, guid: 3befbaa1b3b83f243a244d723a27c16e, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1729882074787140, guid: 3befbaa1b3b83f243a244d723a27c16e, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1845083579151638, guid: 3befbaa1b3b83f243a244d723a27c16e, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939669320020112, guid: 3befbaa1b3b83f243a244d723a27c16e, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4055792686439916, guid: 3befbaa1b3b83f243a244d723a27c16e, type: 3}
       propertyPath: m_LocalPosition.x

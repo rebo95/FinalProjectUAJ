@@ -139,6 +139,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: PowerUp Variant
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: ede5e636597058045a4e990effa5254a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7387034249847226379, guid: ede5e636597058045a4e990effa5254a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ede5e636597058045a4e990effa5254a, type: 3}
 --- !u!1 &1798400971816571252 stripped
